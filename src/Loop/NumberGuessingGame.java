@@ -8,46 +8,56 @@ public class NumberGuessingGame {
         System.out.println("-----Number Guessing Game-----");
 
 
-        Random random = new Random();
-        int randomNumber = random.nextInt(100) +1;
-
-        int count = 1;
-        boolean isWon = false;
+        System.out.println("Yuu have only 5 attempts");
 
         Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+
+        int randomNumber = random.nextInt(100) + 1;
 
 
-        System.out.println("You have only 5 attempts");
+        boolean isWon = false;
 
-        while (count <= 5) {
-            System.out.print("Please, enter the number between 1 and 100:  ");
-            int num = sc.nextInt();
+        int j = 1;
+        while(j < 5) {
+            int count = 1;
+            while (count < 5) {
+                System.out.print("Enter the number between 1 and 100:  ");
+                int number = sc.nextInt();
 
-            if (num < 1 || num > 100) {
-                System.out.println("Invalid Number!Your number must be between 1 and 100");
-                continue;
+                if (number < 1 || number > 100) {
+                    System.out.println("Enter the number between 1 and 100");
+                    continue;
+                }
+                if (number > randomNumber) {
+                    System.out.println("Too High! Try again");
+                } else if (number < randomNumber) {
+                    System.out.println("Too Low! Try again");
+                } else {
+                    isWon = true;
+                    break;
+                }
+                System.out.println("Remaining attempts :  " + (5 - count));
+                count++;
             }
-
-            if (num > randomNumber) {
-                System.out.println("Too High! Try again");
-            } else if (num < randomNumber) {
-                System.out.println("Too Low! Try again");
-
+            if (isWon) {
+                System.out.println("Congratulations! You won");
             } else {
-                isWon = true;
-                break;
-
+                System.out.println("You lost this game. Number was :  " + randomNumber);
             }
-            System.out.println("Attempts remaining  " + (5 - count));
-            count++;
-        }
 
-        if(isWon){
-            System.out.println("Congratulations! Your number is correct ");
-            System.out.println("You won in  " + count + " attempt!");
-        } else {
-            System.out.println("You lost this game and your number is :  " + randomNumber);
-        }
+            System.out.print("Do you want to play again:  ");
+            String choice = sc.next();
 
+            if(choice.equalsIgnoreCase("yes") ){
+                System.out.println("OK. You are ready to play.");
+                randomNumber = random.nextInt(10) + 1;
+                isWon = false;
+            } else if(choice.equalsIgnoreCase("no")) {
+                System.out.println("Thanks for playing");
+                break;
+            }
+            j++;
+        }
     }
 }

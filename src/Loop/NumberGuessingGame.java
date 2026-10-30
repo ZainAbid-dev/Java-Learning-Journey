@@ -43,7 +43,7 @@ public class NumberGuessingGame {
             if (isWon) {
                 System.out.println("Congratulations! You won");
             } else {
-                System.out.println("You lost this game. Number was :  " + randomNumber);
+                System.out.println("You lost this game. Your number was :  " + randomNumber);
             }
 
             System.out.print("Do you want to play again:  ");
